@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as contactsOperations from '../redux/phonebook/phonebook-operations'
-import InputForm from '../components/InputForm/InputForm';
-import Filter from "../components/Filter/Filter";
-import Phonebook from '../components/Phonebook/Phonebook';
-import Container from '../components/Container/Container';
-import { getIsLoading } from '../redux/phonebook/phonebook-selectors';
+
+import InputForm from '../../components/InputForm/InputForm';
+import Filter from "../../components/Filter/Filter";
+import Phonebook from '../../components/Phonebook/Phonebook';
+import Container from '../../components/Container/Container';
+import { getIsLoading } from '../../redux/phonebook/phonebook-selectors';
+import * as contactsOperations from '../../redux/phonebook/phonebook-operations'
 
 class Contacts extends Component {
-  state = {
-    isLoadingContacts: false
-  }
 
   componentDidMount() {
     this.props.fetchContacts()
   }
+
   render() {
     return (
       <>

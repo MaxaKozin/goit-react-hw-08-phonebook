@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
+
 import authActions from './auth-actions';
 
 const initialUserState = {

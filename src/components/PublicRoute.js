@@ -10,17 +10,17 @@ const PublicRoute = ({
   redirectTo,
   ...routeProps
 }) => (
-    <Route
-      {...routeProps}
-      render={props =>
-        isAuthenticated && routeProps.restricted ? (
-          <Redirect to={redirectTo} />
-        ) : (
-            <Component {...props} />
-          )
-      }
-    />
-  );
+  <Route
+    {...routeProps}
+    render={props =>
+      isAuthenticated && routeProps.restricted ? (
+        <Redirect to={redirectTo} />
+      ) : (
+        <Component {...props} />
+      )
+    }
+  />
+);
 
 const mapStateToProps = state => ({
   isAuthenticated: authSelectors.isAuthenticated(state),

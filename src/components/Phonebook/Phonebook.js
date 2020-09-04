@@ -1,41 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import * as contactsOperations from '../../redux/phonebook/phonebook-operations';
 import { getVisibleContacts } from '../../redux/phonebook/phonebook-selectors';
 
 import s from './Phonebook.module.css';
+import PhonebookItem from './PhonebookItem';
 
-const Phonebook = ({ contacts, onDelete }) => {
+const Phonebook = ({ contacts }) => {
   return (
     <>
-      {contacts && (<ul className={s.list}>
-        {contacts.map(({ name, number, id }) => (
-          name && (<li className={s.item} key={id}>
-            <span>{name} : {number}</span>
-            <button type="button" className={s.close} onClick={() => onDelete(id)}>+</button>
-          </li>)
-        ))}
-      </ul>)}
+      {contacts && (
+        <ul className={s.list}>
+          {contacts.map(contact => (
+            <li className={s.item} key={contact.id}>
+              <PhonebookItem {...contact} />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
-
-  )
-}
-
-Phonebook.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  onDelete: PropTypes.func.isRequired
-}
-
-const mapStateToProps = (state) => {
-  return ({
-    contacts: getVisibleContacts(state),
-  })
+  );
 };
 
-const mapDispatchToProps = dispatch => ({
-  onDelete: id => dispatch(contactsOperations.deleteContact(id))
-});
+const mapStateToProps = state => {
+  return {
+    contacts: getVisibleContacts(state),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Phonebook);
+export default connect(mapStateToProps)(Phonebook);

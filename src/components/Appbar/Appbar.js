@@ -15,10 +15,10 @@ const Appbar = ({ isAuthenticated }) => {
       {!isAuthenticated ? <LoginMenu /> : <UserMenu />}
     </div>
   );
-}
+};
 
 const mapStateToProps = state => ({
-  isAuthenticated: authSelectors.isAuthenticated(state)
-})
+  isAuthenticated: authSelectors.isAuthenticated(state),
+});
 
 export default connect(mapStateToProps)(Appbar);

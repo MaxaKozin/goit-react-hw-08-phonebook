@@ -18,14 +18,14 @@ const middleware = [
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
-  })
+  }),
 ];
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token']
-}
+  whitelist: ['token'],
+};
 
 const store = configureStore({
   reducer: {
